@@ -1,4 +1,5 @@
 import random
+import time #
 from ortools.linear_solver import pywraplp
 
 def generar(instancias, materias_primas, d, u):
@@ -37,6 +38,7 @@ def generar(instancias, materias_primas, d, u):
 # disponibilidad = int(input("Maxima a usar de producto: "))
 # utilidades = int(input("Maxima utilidad: "))
 
+current_time = time.time()
 for iteracion in range(10):
 
     # 0-99 variables
@@ -75,6 +77,8 @@ for iteracion in range(10):
             f.write("Asignacion de Variables\n")
             for i in range(len(m)):
                 f.write("x{} = {}\n".format(i+1,x[i].solution_value()))
+            current_time = time.time()-current_time
+            f.write("Tiempo de ejecución: {}\n".format(current_time))
         else:
             f.write("El problema no tiene solucion optima")
 
